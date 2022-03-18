@@ -3,48 +3,52 @@
 
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My first three.js app</title>
     <style>
         body {
             margin: 0;
         }
         
-        canvas {
-            width: 100%;
+        .main-container {
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            background: #111;
+        }
+        
+        .main-container .pano-tester {
+            flex: 1;
             height: 100%;
+            position: fixed;
+            width: 100%;
+        }
+        
+        .main-container h1 {
+            flex: 1;
+            text-align: center;
+            color: #fff;
+            font-family: "Raleway", sans-serif;
+            text-transform: uppercase;
+            font-size: 60px;
+            font-weight: 800;
+            letter-spacing: 10px;
+            z-index: 100;
+            text-shadow: 2px 16px 16px rgba(0, 0, 0, 0.3);
+            pointer-events: none;
         }
     </style>
 </head>
 
 <body>
-    <script src="/panolens.js/src/Panolens.js"></script>
-    <script src="/three.js/build/three.min.js"></script>
-    <script>
-        var panorama, viewer;
+    <div class="main-container">
+        <h1>Living Room</h1>
+        <div class="pano-tester"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/105/three.min.js" integrity="sha512-uWKImujbh9CwNa8Eey5s8vlHDB4o1HhrVszkympkm5ciYTnUEQv3t4QHU02CUqPtdKTg62FsHo12x63q6u0wmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/panolens.min.js"></script>
 
-        panorama = new PANOLENS.ImagePanorama("asset/earths.jpg");
-
-        viewer = new PANOLENS.Viewer();
-        viewer.add(panorama);
-    </script>
-    <script>
-        viewer = new PANOLENS.Viewer({
-            container: document.body, // A DOM Element container
-            controlBar: true, // Vsibility of bottom control bar
-            controlButtons: [], // Buttons array in the control bar. Default to ['fullscreen', 'setting', 'video']
-            autoHideControlBar: false, // Auto hide control bar
-            autoHideInfospot: true, // Auto hide infospots
-            horizontalView: false, // Allow only horizontal camera control
-            cameraFov: 60, // Camera field of view in degree
-            reverseDragging: false, // Reverse orbit control direction
-            enableReticle: false, // Enable reticle for mouseless interaction
-            dwellTime: 1500, // Dwell time for reticle selection in millisecond
-            autoReticleSelect: true, // Auto select a clickable target after dwellTime
-            viewIndicator: false, // Adds an angle view indicator in upper left corner
-            indicatorSize: 30, // Size of View Indicator
-            output: "console", // Whether and where to output infospot position. Could be 'console' or 'overlay'
-        });
-    </script>
+    <script src="/main.js"></script>
 </body>
 
 </html>
